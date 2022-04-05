@@ -36,7 +36,7 @@ class Hotel
 
     def list_rooms
         @rooms.each do |room_name, capacity|
-            print "#{room_name}.*#{@rooms[room_name].available_space}\n"
+            puts "#{room_name}: #{capacity.available_space}"
         end
     end
 end
