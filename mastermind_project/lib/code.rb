@@ -6,4 +6,8 @@ class Code
     "Y" => :yellow
   }
 
+  def self.valid_pegs?(arr)
+
+  end
+
 end
