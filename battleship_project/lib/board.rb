@@ -2,9 +2,8 @@ class Board
     attr_reader :size
 
     def initialize(n)
-        @n = n
-        @grid = Array.new(@n){Array.new(@n, :N)}
-        @size = @n * @n
+        @grid = Array.new(n){Array.new(n, :N)}
+        @size = n * n
     end
 
     def [](arr)
@@ -31,20 +30,18 @@ class Board
     end
 
     def place_random_ships
-        placed = 0
-        while placed < @size/4.0
-            pos = [rand(@n), rand(@n)]
-            if self[pos] != :S
-                self[pos] = :S
-                placed += 1
-            end
+        n = @grid.length
+        while self.num_ships < @size/4
+            pos = [rand(n), rand(n)]
+            self[pos] = :S
         end
     end
 
     def hidden_ships_grid
-        hidden = Array.new(@n){Array.new(@n, :N)}
-        (0...@n).each do |row|
-            (0...@n).each do |col|
+        n = @grid.length
+        hidden = Array.new(n){Array.new(n, :N)}
+        (0...n).each do |row|
+            (0...n).each do |col|
                 pos = [row, col]
                 if self[pos] == :X
                     hidden[row][col] = :X
