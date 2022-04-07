@@ -8,17 +8,22 @@ class HumanPlayer
 
     def get_pos
         puts "It's your turn, #{@mark}!"
-        puts "Please input a position as 'row col' without quotes."
-        usr_input = gets.chomp.split(" ")
 
-        if usr_input.length != 2 
-            raise ArgumentError.new "Wrong number of inputs."
-        elsif usr_input.any? { |ele| alpha?(ele) }
-            raise ArgumentError.new "Those are not numbers."
+        begin
+            puts "Please input a position as 'row col' without quotes."
+            usr_input = gets.chomp.split(" ")
+
+            if usr_input.length != 2 
+                raise ArgumentError.new "Wrong number of inputs."
+            elsif usr_input.any? { |ele| alpha?(ele) }
+                raise ArgumentError.new "Those are not numbers."
+            end
+        rescue
+            retry
         end
 
         usr_input.each.with_index { |num, i| usr_input[i] = num.to_i }
-        # usr_input
+        usr_input
     end
 
     def alpha?(ele)
