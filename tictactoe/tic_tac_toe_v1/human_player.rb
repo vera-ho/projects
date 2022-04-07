@@ -6,18 +6,24 @@ class HumanPlayer
         @mark = mark
     end
 
-    # Prompt user for pos = [x, y] 
-    # Error handling for invalid input
-    # State their mark so they know it's their turn
     def get_pos
         puts "It's your turn, #{@mark}!"
-        begin
-            puts "Please input a position as 'row col' without quotes."
-            usr_input = gets.chomp.split(" ")
-            usr_input.each.with_index { |num, i| usr_input[i] = num.to_i }
-        rescue ArgumentError => e
-            puts "Invalid input. Error: #{e.message}"
-            retry
+        puts "Please input a position as 'row col' without quotes."
+        usr_input = gets.chomp.split(" ")
+
+        if usr_input.length != 2 
+            raise ArgumentError.new "Wrong number of inputs."
+        elsif usr_input.any? { |ele| alpha?(ele) }
+            raise ArgumentError.new "Those are not numbers."
         end
+
+        usr_input.each.with_index { |num, i| usr_input[i] = num.to_i }
+        # usr_input
+    end
+
+    def alpha?(ele)
+        alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        ele.each_char { |char| return true if alpha.include?(char) }
+        false
     end
 end
