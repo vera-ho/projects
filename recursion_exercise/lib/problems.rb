@@ -113,10 +113,6 @@ end
 def flatten(data)
     return [data] if !data.is_a?(Array) # base if original is not array
     data.inject([]) do |result, ele|
-        result + if ele.is_a?(Array) # [1, 2] + [3, 4] = [1, 2, 3, 4] concats
-            flatten(ele)
-        else # base
-            [ele]
-        end
+        result + (ele.is_a?(Array) ? flatten(ele) : [ele])
     end
 end
