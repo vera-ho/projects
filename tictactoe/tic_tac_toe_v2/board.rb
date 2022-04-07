@@ -32,7 +32,9 @@ class Board
     end
 
     def print_grid
+        puts
         @grid.each { |array| puts array.join(" ") }
+        puts
     end
 
     def win_row?(mark)
