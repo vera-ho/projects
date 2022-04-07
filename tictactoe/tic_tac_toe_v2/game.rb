@@ -3,8 +3,8 @@ require "./human_player.rb"
 
 class Game
     
-    def initialize(p1_mark, p2_mark)
-        @board = Board.new
+    def initialize(n, p1_mark, p2_mark)
+        @board = Board.new(n)
         @p1 = HumanPlayer.new(p1_mark)
         @p2 = HumanPlayer.new(p2_mark)
         @current = @p1
