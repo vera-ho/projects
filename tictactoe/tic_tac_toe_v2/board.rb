@@ -26,7 +26,7 @@ class Board
 
     def place_mark(pos, mark)
         unless empty?(pos) && valid?(pos)
-            raise ArgumentError.new "That is not a valid position."
+            raise ArgumentError.new "That is not a valid position. Game is ending."
         end
         self[pos] = mark
     end
