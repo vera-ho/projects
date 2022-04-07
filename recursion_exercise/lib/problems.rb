@@ -2,18 +2,23 @@
 # The method should calculate the base raised to the exponent power.
 # You can assume the exponent is always positive.
 #
-# Solve this recursively!
-#
+# Solve this recursively
 # Examples:
-#
 # pow(2, 0) # => 1
 # pow(2, 1) # => 2
 # pow(2, 5) # => 32
 # pow(3, 4) # => 81
 # pow(4, 3) # => 64
 def pow(base, exponent)
-
+    return 1 if exponent == 0      # base case: exp = 0 or 1
+    base * pow(base, exponent - 1) # recursion
 end
+
+# pow(2, 0) = 1
+# pow(2, 1) = 2   = 2               
+# pow(2, 2) = 4   = 2 * 2           = 2 * pow(2, 1)
+# pow(2, 3) = 8   = 2 * 2 * 2       = 2 * pow(2, 2)
+# pow(2, 4) = 16  = 2 * 2 * 2 * 2   = 2 * pow(2, 3)
 
 
 # Write a method, lucas_number(n), that takes in a number.
@@ -25,9 +30,7 @@ end
 # For example, the sequence begins: 2, 1, 3, 4, 7, 11, ...
 #
 # Solve this recursively!
-#
 # Examples:
-#
 # lucas_number(0)   # =>    2
 # lucas_number(1)   # =>    1
 # lucas_number(2)   # =>    3
@@ -35,23 +38,32 @@ end
 # lucas_number(5)   # =>    11
 # lucas_number(9)   # =>    76
 def lucas_number(n)
-
+    if n == 0
+        return 2
+    elsif n == 1
+        return 1
+    end
+    lucas_number(n - 1) + lucas_number(n - 2)
 end
+
+# lnum(0) = 2
+# lnum(1) = 1     
+# lnum(2) = 3     = lnum(1) + lnum(0)
+# lnum(3) = 4     = lnum(2) + lnum(1)
 
 
 # Write a method, sum_array(array), that takes in an array of numbers.
 # The method should return the total sum of the elements.
 # 
 # Solve this recursively!
-#
 # Examples:
-#
 # sum_array([])             # => 0
 # sum_array([5])            # => 5
 # sum_array([5, 2])         # => 7
 # sum_array([4, 10, -1, 2]) # => 15
 def sum_array(array)
-
+    return 0 if array.length == 0
+    array[0] + sum_array(array[1..-1])
 end
 
 
@@ -59,15 +71,14 @@ end
 # The method should return the string with it's characters in reverse order.
 #
 # Solve this recursively!
-#
 # Examples:
-# 
 # reverse_string("")            # => ""
 # reverse_string("c")           # => "c"
 # reverse_string("internet")    # => "tenretni"
 # reverse_string("friends")     # => "sdneirf"
 def reverse_string(str)
-
+    return "" if str == ""
+    str[-1] + reverse_string(str[0...-1])
 end
 
 
@@ -100,5 +111,12 @@ end
 #     2-dimensional array: [['some data']]
 #     3-dimensional array: [[['some data']]]
 def flatten(data)
-
+    return [data] if !data.is_a?(Array) # base if original is not array
+    data.inject([]) do |result, ele|
+        result + if ele.is_a?(Array) # [1, 2] + [3, 4] = [1, 2, 3, 4] concats
+            flatten(ele)
+        else # base
+            [ele]
+        end
+    end
 end
