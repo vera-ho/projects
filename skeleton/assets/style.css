@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+.ingredients-list {
+    list-style: square inside
+}
+
+.direction-list {
+    list-style-type: decimal;
+}
+
+header > img {
+    width: 100px;
+}
+
+ul > li > a {
+    text-decoration: none;
+    color: inherit
+}
+
+body {
+    background-color: darkseagreen;
+    margin: 25px;
+}
+
+.user_review {
+    margin: 5px;
+    font-size: 14px;
+    background-color: bisque;
+    /* border: 2px dotted orange; */
+}
+
+input[type="radio"],
+input[type="submit"], 
+select {
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    width: 27px;
+    height: 27px;
+    background-image: url(./stars.png);
+    vertical-align: bottom;
+}
+
+
+input[type="radio"]:checked {
+    background-position: 30px 30px;
+}
+
+input[type="radio"]:hover {
+    /* -webkit-filter: brightness(85%); */
+    background-position: center;
+}
+
+input:last-child {
+    background-color: gold;
+}
+
+input:last-child:hover {
+    -webkit-filter: brightness(75%);
+}
+
+.direction-list li:nth-of-type(2n) {
+    background-color: lightgray;
+}
+
+h2 + .user_review {
+    border-top: 1px solid black;
+}
