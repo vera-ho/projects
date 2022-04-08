@@ -69,6 +69,7 @@ input:last-child {
 }
 
 input:last-child:hover {
+    filter: brightness(75%);
     -webkit-filter: brightness(75%);
 }
 
