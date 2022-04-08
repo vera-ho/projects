@@ -1,19 +1,8 @@
 class Item
     attr_reader :title, :deadline, :description
 
-    def initialize(title, deadline, description)
-        @title = title
-        @description = description
-
-        if valid_date?(deadline)
-            @deadline = deadline
-        else
-            raise ArgumentError.new "That is not a valid date."
-        end
-    end
-
     # valid date format: YYYY-MM-DD
-    def valid_date?(date)
+    def self.valid_date?(date)
         date = date.split("-")
         if date[0].length != 4    # multiple if/else only for readability
             return false
@@ -25,12 +14,23 @@ class Item
         true
     end
 
+    def initialize(title, deadline, description)
+        @title = title
+        @description = description
+
+        if Item.valid_date?(deadline)
+            @deadline = deadline
+        else
+            raise ArgumentError.new "That is not a valid date."
+        end
+    end
+
     def title=(new_title)
         @title = new_title
     end
 
     def deadline=(new_deadline)
-        if valid_date?(new_deadline)
+        if Item.valid_date?(new_deadline)
             @deadline = new_deadline
         else
             raise ArgumentError.new "That is not a valid date."
