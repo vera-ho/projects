@@ -63,8 +63,9 @@ class List
     end
 
     # playing with recursion
-    def up(idx, amt=1)
+    def up(idx, amt)
         return false if !valid_index?(idx)
+        amt ||= 1
         if amt == 1 || idx == 1
             swap(idx, idx - 1)
         elsif idx > 0
@@ -74,21 +75,9 @@ class List
         true
     end
 
-    # def down(idx, amt)
-    #     if valid_index?(idx)
-    #         if amt == 1
-    #             swap(idx, idx + 1)
-    #         elsif idx < @items.length
-    #             swap(idx, idx + 1)
-    #             down(idx + 1, amt - 1)
-    #         end
-    #         return true
-    #     end
-    #     false
-    # end
-
-    def down(idx, amt=1)
+    def down(idx, amt)
         return false if !valid_index?(idx)
+        amt ||= 1
         while amt > 0 && idx < @items.length - 1
             swap(idx, idx + 1)
             idx += 1
