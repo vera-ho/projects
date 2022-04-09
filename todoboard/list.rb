@@ -64,16 +64,14 @@ class List
 
     # playing with recursion
     def up(idx, amt=1)
-        if valid_index?(idx)
-            if amt == 1      # up(0,1) OK due to valid_index? check in swap
-                swap(idx, idx - 1)
-            elsif idx > 0
-                swap(idx, idx - 1)
-                up(idx - 1, amt - 1)
-            end
-            return true
+        return false if !valid_index?(idx)
+        if amt == 1 || idx == 1
+            swap(idx, idx - 1)
+        elsif idx > 0
+            swap(idx, idx - 1)
+            up(idx - 1, amt - 1)
         end
-        false
+        true
     end
 
     # def down(idx, amt)
@@ -90,15 +88,13 @@ class List
     # end
 
     def down(idx, amt=1)
-        if valid_index?(idx)
-            while amt > 0
-                swap(idx, idx + 1)
-                idx += 1
-                amt -= 1
-            end
-            return true
+        return false if !valid_index?(idx)
+        while amt > 0 && idx < @items.length - 1
+            swap(idx, idx + 1)
+            idx += 1
+            amt -= 1
         end
-        false
+        true
     end
 
     def sort_by_date!
