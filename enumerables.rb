@@ -19,16 +19,28 @@ class Array
         arr
     end
 
-    def my_reject
-        
+    def my_reject(&prc)
+        arr = []
+        i = 0
+        while i < self.length
+            arr<< self[i] if !prc.call(self[i])
+            i += 1
+        end
+        arr
     end
 
-    def my_any?
-
+    def my_any?(&prc)
+        i = 0
+        while i < self.length
+            return true if prc.call(self[i])
+            i += 1
+        end
+        false
     end
 
-    def my_all?
-
+    def my_all?(&prc)
+        self.my_each{|element|return false if !prc.call(element)}
+        true
     end
 
     def my_flatten
