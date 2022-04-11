@@ -1,39 +1,47 @@
-def my_each(&prc)
+class Array
 
-end
+    def my_each(&prc)
+        i = 0
+        while i < self.length
+            prc.call(self[i])
+            i += 1
+        end
+        self
+    end
 
-def my_select(&prc)
+    def my_select(&prc)
 
-end
+    end
 
-def my_reject
+    def my_reject
 
-end
+    end
 
-def my_any?
+    def my_any?
 
-end
+    end
 
-def my_all?
+    def my_all?
 
-end
+    end
 
-def my_flatten
+    def my_flatten
 
-end
+    end
 
-def my_zip
+    def my_zip
 
-end
+    end
 
-def my_rotate
+    def my_rotate
 
-end
+    end
 
-def my_join
+    def my_join
 
-end
+    end
 
-def my_reverse
+    def my_reverse
 
+    end
 end
