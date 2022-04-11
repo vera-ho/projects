@@ -44,8 +44,20 @@ class Array
     end
 
     def my_flatten
-
+        # base -> if item is not array, return self as array element
+        return [self] if !self.is_a?(Array)
+        arr = []
+        self.my_each do |ele|
+            if !ele.is_a?(Array)
+                arr << ele
+            else
+                arr << ele.my_flatten
+            end
+        end
+        arr
     end
+
+    p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
 
     def my_zip
 
