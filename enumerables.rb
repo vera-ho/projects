@@ -58,17 +58,18 @@ class Array
     end
 
     def my_zip(*arr)
-        new_arr = Array.new(arr.length){Array.new}
-        (0...self.length).each do |i1|
-            arr.each_with_index do |e,i2|
-                
-            end
+        new_arr = [] # Array.new(arr.length){Array.new}
+        (0...self.length).each do |i|
+            subarray = []
+            ([self] + arr).each { |a| subarray << a[i] }
+            new_arr << subarray
         end
         new_arr
     end
 
-    def my_rotate
-
+    def my_rotate(n=1)
+        (n.abs).times { n > 0 ? self.push(self.shift) : self.unshift(self.pop) }
+        self
     end
 
     def my_join
