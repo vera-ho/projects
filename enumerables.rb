@@ -51,16 +51,20 @@ class Array
             if !ele.is_a?(Array)
                 arr << ele
             else
-                arr << ele.my_flatten
+                arr += ele.my_flatten
             end
         end
         arr
     end
 
-    p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
-
-    def my_zip
-
+    def my_zip(*arr)
+        new_arr = Array.new(arr.length){Array.new}
+        (0...self.length).each do |i1|
+            arr.each_with_index do |e,i2|
+                
+            end
+        end
+        new_arr
     end
 
     def my_rotate
