@@ -45,7 +45,7 @@ class Board
 
     def won?
         @board.all? do |arr| 
-            arr.all? { |card| !card.face_up }
+            arr.all? { |card| card.face_up }
         end
     end
 
@@ -53,7 +53,5 @@ class Board
         self[pos].reveal  #reveal from Card.rb
         self[pos].display
     end
-
-
 
 end
