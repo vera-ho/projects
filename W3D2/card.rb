@@ -1,7 +1,9 @@
 class Card
-
+        attr_reader :face_up
+        
     def initialize(face_value)
-        @face_up = false
+        # @face_up = true #for testing only
+        @face_up = false 
         @face_value = face_value
     end
 
