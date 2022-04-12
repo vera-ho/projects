@@ -1,13 +1,11 @@
 require_relative "./card.rb"
 
 class Board
-    # attr_reader :array
 
     def initialize(n=4)
         @board = Array.new(n) { Array.new(n) }
         @length = n
         @array = []
-
         self.place_cards
     end
 
@@ -50,4 +48,12 @@ class Board
             arr.all? { |card| !card.face_up }
         end
     end
+
+    def reveal(pos)
+        self[pos].reveal  #reveal from Card.rb
+        self[pos].display
+    end
+
+
+
 end

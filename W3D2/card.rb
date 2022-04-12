@@ -1,5 +1,5 @@
 class Card
-        attr_reader :face_up
+    attr_reader :face_up
         
     def initialize(face_value)
         # @face_up = true #for testing only
@@ -11,7 +11,7 @@ class Card
         if @face_up
             @face_value
         else
-            " " # maybe? maybe take out else?
+            "_" # maybe? maybe take out else?
         end
     end
 
