@@ -1,10 +1,12 @@
 require_relative "board"
+require "./human.rb"
 
 class Game
     
     def initialize(n)
         @board = Board.new(n)
         @p1 = Human.new
+        @npc1 = Computer.new(n)
         @prev_guess = []
     end
 
@@ -14,6 +16,7 @@ class Game
             pos = @p1.get_input
             make_guess(pos)
         end
+        puts "Meh."
     end
 
     def make_guess(pos)
@@ -27,6 +30,8 @@ class Game
                 @board[pos].hide
                 @board[@prev_guess].hide
                 puts 'No match! You suck at this game.'
+            else
+                puts "Good job! You're alright, I guess."
             end
             @prev_guess = []
             puts
