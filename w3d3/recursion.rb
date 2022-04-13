@@ -18,4 +18,21 @@ def expo_recursion1(b, n)
 end
 
 def expo_recursion2(b, n)
-    
+    return 1 if n == 0
+    return b if n == 1
+    if n.even?
+        even_expo = expo_recursion2(b, n / 2)
+        even_expo * even_expo
+    else
+        odd_expo = expo_recursion2(b, (n-1) / 2)
+        b * odd_expo * odd_expo
+    end
+end
+
+# a = [1, [2], [3, [4]]]
+def deep_dup(arr)
+    return arr[0] if arr[0].is_a?(Array)
+    arr.each do |ele|
+
+    end
+end
