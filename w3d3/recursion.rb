@@ -83,27 +83,15 @@ def merge_sort(arr)
 end
 
 def merge(arr_1, arr_2)
-    # i = 0
-    # j = 0
     sorted = []
-    # puts "arr1 length: #{arr_1.length}, arr2 length: #{arr_2.length}"
-    # debugger
-    # while i != arr_1.length && j != arr_2.length
-    while sorted.length != (arr_1.length + arr_2.length)
-        # if arr_1[i] > arr_2[j]
+
+    while sorted.length < (arr_1.length + arr_2.length)
         if arr_1[0] > arr_2[0]
             sorted << arr_2.shift()
-            # sorted << arr_2[j]
-            # j += 1
         elsif arr_1[0] < arr_2[0]
             sorted << arr_1.shift()
-            # sorted << arr_1[i]
-            # i += 1
         end
-        # puts "i: #{i}; j: #{j}"
     end
-    # print "sorted: #{sorted}"
-    # puts
     sorted
 end
 
