@@ -41,3 +41,20 @@ def deep_dup(arr)
     end
     return new_arr
 end
+
+def it_fib(n)
+    fib = [0,1]
+    (2..n).each do |i|
+        fib << fib[i-1] + fib[i-2]
+    end
+    return fib
+end
+
+def rec_fib(n)
+    return [] if n==0
+    return [0,1] if n==1
+    return [0,1,1] if n==2
+    rec_fib(n-1) << rec_fib(n-1)[-1] + rec_fib(n-1)[-2]
+    
+end
+
