@@ -71,3 +71,30 @@ def bsearch(arr, target)
         end
     end
 end
+
+def merge_sort(arr)
+    return arr if arr.length == 1 || arr.length == 0
+    half = arr.length/2
+    front_half = merge_sort(arr[0..half])
+    back_half = merge_sort(arr[(half + 1)..-1])
+    merge(front_half, back_half)
+end
+
+def merge(arr_1,arr_2)
+    i, j = 0, 0
+    #i=0
+    #j=0
+    sorted=[]
+    while count[0] != arr_1.length && count[1] != arr_2.length
+        if arr_1[i] > arr_2[j]
+            sorted << arr_2[j]
+            j += 1
+        else
+            sorted << arr_1[i]
+            i +=1
+        end
+    end
+    return sorted
+end
+
+    
