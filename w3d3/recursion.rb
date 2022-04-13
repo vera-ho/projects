@@ -84,12 +84,31 @@ end
 
 def merge(arr_1, arr_2)
     sorted = []
-
-    while sorted.length < (arr_1.length + arr_2.length)
+# debugger
+    while !arr_1.empty? && !arr_2.empty? 
         if arr_1[0] > arr_2[0]
-            sorted << arr_2.shift()
+            sorted.push(arr_2.shift)
+            # debugger
         elsif arr_1[0] < arr_2[0]
-            sorted << arr_1.shift()
+            sorted.push(arr_1.shift)
+        end
+    end
+    sorted + arr_1 + arr_2 
+end
+
+def merge_2(arr_1, arr_2)
+    sorted = []
+    while sorted.length < (arr_1.length + arr_2.length) - 1
+        if arr_1[0]== nil 
+            return arr_2[0]
+        elsif arr_2[0] == nil
+            return arr_1[0]
+        end
+
+        if arr_1[0] > arr_2[0]
+            sorted.push(arr_2.shift)
+        else 
+            sorted.push(arr_1.shift)
         end
     end
     sorted
