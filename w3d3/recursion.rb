@@ -31,8 +31,14 @@ end
 
 # a = [1, [2], [3, [4]]]
 def deep_dup(arr)
-    return arr[0] if arr[0].is_a?(Array)
+    return arr if !arr[0].is_a?(Array)
     arr.each do |ele|
-
+        new_arr=[]
+        if ele.is_a?(Array) 
+            new_arr << deep_dup(ele)
+        else
+            new_arr << ele
+        end
     end
+    return new_arr
 end
