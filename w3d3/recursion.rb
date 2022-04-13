@@ -55,6 +55,19 @@ def rec_fib(n)
     return [0,1] if n==1
     return [0,1,1] if n==2
     rec_fib(n-1) << rec_fib(n-1)[-1] + rec_fib(n-1)[-2]
-    
 end
 
+def bsearch(arr, target)
+    return nil if arr.length == 1 && arr[0] != target
+    idx = arr.length / 2
+    if arr[idx] == target
+        return idx
+    else
+        if arr[idx] < target 
+            i = bsearch(arr[idx..-1], target)
+            i.is_a?(Integer) ? idx + i : nil
+        else # lower half
+            bsearch(arr[0..(idx - 1)], target)
+        end
+    end
+end
