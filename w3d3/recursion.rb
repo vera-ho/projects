@@ -74,6 +74,8 @@ def bsearch(arr, target)
     end
 end
 
+# a = [38, 27, 43, 3, 9, 82, 10]
+# b = [2, 59, 3, 11, 90, 56, 24, 34]
 def merge_sort(arr)
     return arr if arr.length == 1 || arr.length == 0
     half = arr.length / 2
