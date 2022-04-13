@@ -1,3 +1,5 @@
+require 'byebug'
+
 def iterative_range(min, max)
     return [] if max < min
     new_arr = []
@@ -74,27 +76,35 @@ end
 
 def merge_sort(arr)
     return arr if arr.length == 1 || arr.length == 0
-    half = arr.length/2
-    front_half = merge_sort(arr[0..half])
-    back_half = merge_sort(arr[(half + 1)..-1])
+    half = arr.length / 2
+    front_half = merge_sort(arr[0...half]) 
+    back_half = merge_sort(arr[half..-1]) 
     merge(front_half, back_half)
 end
 
-def merge(arr_1,arr_2)
-    i, j = 0, 0
-    #i=0
-    #j=0
-    sorted=[]
-    while count[0] != arr_1.length && count[1] != arr_2.length
-        if arr_1[i] > arr_2[j]
-            sorted << arr_2[j]
-            j += 1
-        else
-            sorted << arr_1[i]
-            i +=1
+def merge(arr_1, arr_2)
+    # i = 0
+    # j = 0
+    sorted = []
+    # puts "arr1 length: #{arr_1.length}, arr2 length: #{arr_2.length}"
+    # debugger
+    # while i != arr_1.length && j != arr_2.length
+    while sorted.length != (arr_1.length + arr_2.length)
+        # if arr_1[i] > arr_2[j]
+        if arr_1[0] > arr_2[0]
+            sorted << arr_2.shift()
+            # sorted << arr_2[j]
+            # j += 1
+        elsif arr_1[0] < arr_2[0]
+            sorted << arr_1.shift()
+            # sorted << arr_1[i]
+            # i += 1
         end
+        # puts "i: #{i}; j: #{j}"
     end
-    return sorted
+    # print "sorted: #{sorted}"
+    # puts
+    sorted
 end
 
     
