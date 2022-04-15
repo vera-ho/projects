@@ -44,12 +44,17 @@ class PolyTreeNode
 
   def bfs(target)
     queue = [self]
+
     until queue.empty?
-      val = queue.shift.value
-      if val == target
+      node = queue.shift
+      if node.value == target
+        found = node
+        return found #if found
+      else
+        queue << self.children
       end
-      
     end
+    nil
   end
 
 
