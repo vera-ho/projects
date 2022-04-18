@@ -2,10 +2,10 @@ require '../PolyTreeNode/lib/00_tree_node.rb'
 require 'byebug'
 
 class KnightPathFinder
-    KNIGHT_MOVES = [  [1, 2] , [1, -2],
-                [-1, 2], [-1, -2],
-                [2, 1] , [2, -1], 
-                [-2, 1], [-2, -1]   ]
+    KNIGHT_MOVES =  [  [1, 2] , [1, -2],
+                    [-1, 2], [-1, -2],
+                    [2, 1] , [2, -1], 
+                    [-2, 1], [-2, -1]   ]
 
     attr_accessor :root_node, :considered
 
@@ -47,5 +47,25 @@ class KnightPathFinder
                 curr_node.add_child(child)
             end
         end
+    end
+
+    # return node at end_pos
+    def find_path_dfs(end_pos)
+        @root_node.dfs(end_pos)
+    end
+
+    def find_path_bfs(end_pos)
+        @root_node.bfs(end_pos)
+    end
+
+    # return array with path from end_pos to start_pos
+    def trace_path_back(end_pos)
+        target_node = find_path_dfs(end_pos)
+        path = [target_node.value]
+        until target_node.parent.nil?
+            target_node = target_node.parent
+            path << target_node.value
+        end
+        path
     end
 end
