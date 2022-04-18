@@ -13,8 +13,6 @@ class PolyTreeNode
     if @parent != nil
       @parent.children.delete(self)
     end
-
-    
     # reassign
     @parent = parent
     
@@ -35,6 +33,7 @@ class PolyTreeNode
 
   def dfs(target)
     return self if target == self.value
+    # p self
     self.children.each do |child|
       found = child.dfs(target)
       return found if found
@@ -48,10 +47,11 @@ class PolyTreeNode
     until queue.empty?
       node = queue.shift
       if node.value == target
-        found = node
-        return found #if found
+        return node
       else
-        queue << self.children
+        node.children.each do |child|
+          queue << child
+        end
       end
     end
     nil

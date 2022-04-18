@@ -1,6 +1,5 @@
 require 'rspec'
 require '00_tree_node'
-require 'colorize'
 
 describe PolyTreeNode do
   let(:node1) { PolyTreeNode.new('root') }
