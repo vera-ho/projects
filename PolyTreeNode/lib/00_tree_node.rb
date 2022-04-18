@@ -33,7 +33,6 @@ class PolyTreeNode
 
   def dfs(target)
     return self if target == self.value
-    # p self
     self.children.each do |child|
       found = child.dfs(target)
       return found if found
@@ -56,6 +55,4 @@ class PolyTreeNode
     end
     nil
   end
-
-
 end
