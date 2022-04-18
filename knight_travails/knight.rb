@@ -1,36 +1,51 @@
+require '../PolyTreeNode/lib/00_tree_node.rb'
+require 'byebug'
+
 class KnightPathFinder
-    KNIGHT = [  [1, 2] , [1, -2],
+    KNIGHT_MOVES = [  [1, 2] , [1, -2],
                 [-1, 2], [-1, -2],
                 [2, 1] , [2, -1], 
                 [-2, 1], [-2, -1]   ]
 
+    attr_accessor :root_node, :considered
+
     def initialize(start_pos)
-        @root = start_pos
+        @root_node = PolyTreeNode.new(start_pos)
         @considered = [start_pos]
-        build_move_tree(@root)
+        build_move_tree
     end
 
     def self.valid_moves(pos)
-        # generate all possible moves from position
         valid_moves = []
-        KNIGHT.each do |move| # move = [x, y]
+        KNIGHT_MOVES.each do |move| # move = [x, y]
             valid_moves << [pos[0] + move[0], pos[1] + move[1]]
         end
 
-        # remove any that are out of bounds on 8x8 grids
-        valid_moves.reject do |move|
+        valid_moves.reject do |move| # remove out of bounds
             move.any? { |pos| pos > 7 || pos < 0 } 
         end
     end
 
     def new_move_positions(pos)
-        # get moves from ::valid_moves
-        # check @considered and remove overlap
+        # get moves from ::valid_move and remove overlap from @considered
         moves = KnightPathFinder.valid_moves(pos)
-        moves.reject { |move| @considered.include?(move) }
+        moves = moves.reject { |move| @considered.include?(move) }
+        @considered += moves
+        moves
     end
 
-    def build_move_tree(root)
-
+    def build_move_tree
+        move_tree = [@root_node]
+        until move_tree.empty?
+            # Get valid moves for the node (children)
+            curr_node = move_tree.shift
+            new_move_positions(curr_node.value).each do |move|
+                # add moves (new child nodes) to queue
+                child = PolyTreeNode.new(move)
+                move_tree << child 
+                # make parent/child connections
+                curr_node.add_child(child)
+            end
+        end
     end
 end
