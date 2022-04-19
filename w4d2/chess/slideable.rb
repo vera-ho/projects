@@ -2,35 +2,41 @@ module slidable
 
   HORIZONTAL_DIRS = [[0, 1], [1, 0], [0, -1] , [-1, 0]]
   DIAGONAL_DIRS = [[1, 1], [-1, -1], [-1, 1], [1, -1]]
- # constant.freeze
 
-  attr_reader :HORIZONTAL_DIRS, :DIAGONAL_DIRS
+  def moves_horizontal
+    move(DIAGONAL_DIRS)
+  end
 
-  # dynamic possible pos based on board state => []
-  def moves
-    moves = diagonal_dirs + horizontal_dirs
+  def moves_horizontal
+    move(HORIZONTAL_DIRS)
+  end
+  
+  def move(direction_array)
+    all_moves = []
+    direction_array.each do |direction|
+      dx = direction[0]
+      dy = direction[1]
+      all_moves += grow_unblocked_moves_in_dir(dx, dy)
+    end
+    all_moves
   end
 
   private
-  def horizontal_dirs
-    horizontal_moves = []
-    (1..7).each do |multiplier| 
-      HORIZONTAL_DIRS.each do |move| 
-        horizontal_moves << [move[0] * multiplier, move[1] * multiplier] 
-      end
+ 
+  def grow_unblocked_moves_in_dir(dx, dy)
+    original_dx = dx
+    original_dy = dy
+    unblocked_moves = []
+    pos = [@pos[0]+dx][@pos[1]+dy]
+    until @board[@pos[0]+dx][@pos[1]+dy] != NullPiece.instance &&
+        pos.all?{|index| index<=7 && index>=0}
+      unblocked_moves << pos
+      dx+=original_dx
+      dy+=original_dy
     end
-    horizontal_moves
+    return unblocked_moves
   end
 
-  def diagonal_dirs
-    diagonal_moves = []
-    (1..7).each do |multiplier| 
-      DIAGONAL_DIRS.each do |move| 
-        diagonal_moves << [move[0] * multiplier, move[1] * multiplier] 
-      end
-    end
-    diagonal_moves
-  end
 
   def move_dirs
     raise NoMethodError.new("No move directions")
