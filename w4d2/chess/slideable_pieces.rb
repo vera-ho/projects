@@ -1,18 +1,20 @@
-require_relative "slidable.rb"
+require_relative "slideable.rb"
 require_relative "piece.rb"
 
 class Rook < Piece
-  include Slidable
+  include Slideable
+
   def initialize(color, board, pos)
     super
   end
+
   def symbol
     :R
   end
 
-  private
+  # private
   def move_dirs
-
+    moves_horizontal
   end
 
 end

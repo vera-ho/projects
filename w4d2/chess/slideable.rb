@@ -1,9 +1,10 @@
-module slidable
+require "byebug"
+module Slideable
 
   HORIZONTAL_DIRS = [[0, 1], [1, 0], [0, -1] , [-1, 0]]
   DIAGONAL_DIRS = [[1, 1], [-1, -1], [-1, 1], [1, -1]]
 
-  def moves_horizontal
+  def moves_diagonal
     move(DIAGONAL_DIRS)
   end
 
@@ -24,15 +25,17 @@ module slidable
   private
  
   def grow_unblocked_moves_in_dir(dx, dy)
+    #debugger
     original_dx = dx
     original_dy = dy
     unblocked_moves = []
-    pos = [@pos[0]+dx][@pos[1]+dy]
-    until @board[@pos[0]+dx][@pos[1]+dy] != NullPiece.instance &&
-        pos.all?{|index| index<=7 && index>=0}
+    pos = [@pos[0]+dx, @pos[1]+dy]
+    # have to add condition for taking a piece (can move one more)
+    while @board[pos] == NullPiece.instance && pos.all?{|index| index<=7 && index>=0}
       unblocked_moves << pos
       dx+=original_dx
       dy+=original_dy
+      pos = [@pos[0]+dx, @pos[1]+dy]
     end
     return unblocked_moves
   end

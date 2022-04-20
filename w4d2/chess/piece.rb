@@ -16,8 +16,12 @@ class Piece
     valid_moves
   end
 
+  def to_s  #come back to this later
+    " #{:color} "
+  end
+
   def symbol
-    @color
+    raise ArgumentError.new("No valid Symbol method")
   end
 
   def empty?
