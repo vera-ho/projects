@@ -76,6 +76,8 @@ class Cursor
   end
 
   def handle_key(key)
+
+    
   end
 
   def update_pos(diff)
