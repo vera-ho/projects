@@ -4,17 +4,9 @@ module Slideable
   HORIZONTAL_DIRS = [[0, 1], [1, 0], [0, -1] , [-1, 0]]
   DIAGONAL_DIRS = [[1, 1], [-1, -1], [-1, 1], [1, -1]]
 
-  def moves_diagonal
-    move(DIAGONAL_DIRS)
-  end
-
-  def moves_horizontal
-    move(HORIZONTAL_DIRS)
-  end
-  
-  def move(direction_array)
+  def move
     all_moves = []
-    direction_array.each do |direction|
+    move_dirs.each do |direction|
       dx = direction[0]
       dy = direction[1]
       all_moves += grow_unblocked_moves_in_dir(dx, dy)

@@ -1,13 +1,14 @@
 require "singleton"
 
 class Piece
-
+  attr_reader :color
   def initialize(color, board, pos)
     @color = color
     @board = board
     @pos = pos
   end
 
+  #utilize move into check as a helper function?
   def valid_moves
     valid_moves = []
     @board.each_with_index do |row, i|
@@ -32,7 +33,8 @@ class Piece
     @board[@pos[0]][@pos[1]] = val
   end
 
-  def move_into_check(end_pos)
+  # does the move put yourself or opponent into check
+  def move_into_check(end_pos) 
     king_pos = []
     @board.each_with_index do |row, i|
       (0..7).each { |j| king_pos = [i, j] if row[j].symbol == :K && row[j].color != @color }
@@ -48,10 +50,8 @@ end
 
 class NullPiece < Piece
   include Singleton
-  # attr_reader :symbol
 
   def initialize
-    
-    # super
+    @color = nil
   end
 end

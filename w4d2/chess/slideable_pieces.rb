@@ -12,18 +12,47 @@ class Rook < Piece
     :R
   end
 
-  # private
+  private
   def move_dirs
-    moves_horizontal
+    HORIZONTAL_DIRS
   end
+
+  
 
 end
 
 class Bishop < Piece
+  include Slideable
 
+  def initialize(color, board, pos)
+    super
+  end
+
+  def symbol
+    :B
+  end
+
+  private
+  def move_dirs
+    DIAGONAL_DIRS
+  end
 end
 
 class Queen < Piece
+  include Slideable
 
+  def initialize(color, board, pos)
+    super
+  end
+
+  def symbol
+    :Q
+  end
+
+
+  private
+  def move_dirs
+    HORIZONTAL_DIRS + DIAGONAL_DIRS
+  end
 
 end
