@@ -38,7 +38,3 @@ class Board
     true
   end
 end
-
-# b = Board.new
-# b.move_piece([0,0],[2,2])
-# p b

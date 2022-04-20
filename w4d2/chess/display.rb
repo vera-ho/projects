@@ -6,9 +6,14 @@ class Display
     @cursor = Cursor.new([0,0], @board)
   end
   def render
-    (0..7).each do |row|
-      puts (0..7).map{|col| @board[[row,col]].symbol.to_s}.join(" ")
+    (0..7).each_with_index do |row, i|
+      print_row = (0..7).map.with_index do |col, j| 
+        (i + j) % 2 == 0 ? @board[[row,col]].to_s.on_red : @board[[row,col]].to_s.on_blue
+      end
+      puts print_row.join("")
     end
   end
+
+
 
 end

@@ -18,7 +18,7 @@ class Piece
   end
 
   def to_s  #come back to this later
-    " #{:color} "
+    " #{symbol} ".colorize(color.to_sym).on_blue
   end
 
   def symbol
@@ -52,7 +52,7 @@ class NullPiece < Piece
   include Singleton
 
   def initialize
-    @color = nil
+    @color = "blue"
   end
   def symbol
     " "

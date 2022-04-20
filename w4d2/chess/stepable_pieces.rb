@@ -7,7 +7,7 @@ include Stepable
   end
 
   def symbol
-    :K
+    :♔
   end
 
   private
@@ -23,7 +23,7 @@ include Stepable
   end
   
   def symbol
-    :H
+    :♘
   end
   private
   def move_dirs
@@ -39,7 +39,7 @@ class Pawn < Piece
   end
 
   def symbol
-    :P
+    :♙
   end
 
   def move

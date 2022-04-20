@@ -9,7 +9,7 @@ class Rook < Piece
   end
 
   def symbol
-    :R
+    :♖
   end
 
   private
@@ -29,7 +29,7 @@ class Bishop < Piece
   end
 
   def symbol
-    :B
+    :♗
   end
 
   private
@@ -46,7 +46,7 @@ class Queen < Piece
   end
 
   def symbol
-    :Q
+    :♕
   end
 
 
