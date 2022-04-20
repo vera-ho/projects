@@ -54,4 +54,7 @@ class NullPiece < Piece
   def initialize
     @color = nil
   end
+  def symbol
+    " "
+  end
 end
