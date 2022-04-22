@@ -32,19 +32,20 @@ end
 
 
 # Hash Map
-
 def two_sum?(arr, target_sum)
   hash = Hash.new(0)
-  arr.each_with_index {|ele, i| hash[i] = ele}
-  find_number = 0
-  hash.values.each_with_index do |num, i|
-    find_number = target_sum - num
-    return true if hash.has_value?(find_number) && find_number != num
+  arr.each do |ele|
+    diff = target_sum - ele
+    if hash.has_key?(diff)
+      return true
+    else
+      hash[ele] += 1
+    end
   end
   false
 end
 
-arr = [1, 7, 0, 5]
+arr = [1, 7, 5, 0, 5]
 
 p two_sum?(arr, 6)
 p two_sum?(arr, 10)
