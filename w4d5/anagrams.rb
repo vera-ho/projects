@@ -25,18 +25,18 @@ def third_anagram(str1, str2)
 end
 
 def fourth_anagram(str1, str2)
-    ctr1 = Hash.new(0)
-    ctr2 = Hash.new(0)
-    str1.each_char { |char| ctr1[char] += 1 }
-    str2.each_char { |char| ctr2[char] += 1 }
-    ctr1 == ctr2
+    ctr1 = Hash.new(0)                          # O(1)
+    ctr2 = Hash.new(0)                          # O(1)
+    str1.each_char { |char| ctr1[char] += 1 }   # O(n)
+    str2.each_char { |char| ctr2[char] += 1 }   # O(n)
+    ctr1 == ctr2                                # O(1)
 end
 
 def fifth_anagram(str1, str2)
-    ctr = Hash.new(0)
-    str1.each_char { |char| ctr[char] += 1 }
-    str2.each_char { |char| ctr[char] -= 1 }
-    ctr.values.all?(0)
+    ctr = Hash.new(0)                           # O(1)
+    str1.each_char { |char| ctr[char] += 1 }    # O(n)
+    str2.each_char { |char| ctr[char] -= 1 }    # O(n)
+    ctr.values.all?(0)                          # O(n)
 end
 
 p fifth_anagram("gizmo", "sally")    #=> false
