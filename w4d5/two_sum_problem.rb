@@ -1,18 +1,17 @@
 # two_sum_problem
 
 # Brute force
-
+# Iterate through every element 
 def bad_two_sum?(arr, target_sum)                                 #O(n^2)
   arr.each_with_index do |ele1, i1|                               # O(n)
     arr.each_with_index do |ele2, i2|                             # O(n)
-      return true if arr[i1] + arr[i2] == target_sum && i1 != i2  #O(1)
+      return true if arr[i1] + arr[i2] == target_sum && i1 != i2  # O(1)
     end
   end
   false
 end
 
 # Sorting
-
 def okay_two_sum?(arr, target_sum)
   arr = arr.sort                          # O(n log n)
   i = 0                                   # O (1)
@@ -32,14 +31,17 @@ end
 
 
 # Hash Map
-def two_sum?(arr, target_sum)
-  hash = Hash.new(0)
-  arr.each do |ele|
-    diff = target_sum - ele
-    if hash.has_key?(diff)
-      return true
+# Iterate through array once
+# Subtract ele from target and look for the resulting diff in hash
+# If not in hash, add to hash
+def two_sum?(arr, target_sum)             # O(n)
+  hash = Hash.new(0)                      # O(1)
+  arr.each do |ele|                       # O(n)
+    diff = target_sum - ele               # O(1)
+    if hash.has_key?(diff)                # O(1)
+      return true 
     else
-      hash[ele] += 1
+      hash[ele] += 1                      # O(1)
     end
   end
   false
