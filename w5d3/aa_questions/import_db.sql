@@ -65,7 +65,9 @@ VALUES
     ('What is SQL?', 'I forgot how to use google. Pls help!',
     (SELECT id FROM users WHERE fname = 'Madeleine' AND lname =  'Pla')),
     ('What''s for lunch?', 'I''m hungry. Should I get pizza?' ,
-    (SELECT id FROM users WHERE fname = 'Vera' AND lname = 'Ho'));
+    (SELECT id FROM users WHERE fname = 'Vera' AND lname = 'Ho')),
+    ('Question', 'Can I ask a second question?',
+    (SELECT id FROM users WHERE fname = 'Madeleine' AND lname =  'Pla'));
 
 INSERT INTO
     question_follows(question_id, user_id)
@@ -77,9 +79,13 @@ INSERT INTO
     replies(question_id, parent_reply_id, user_id, body)
 VALUES
     ((SELECT id FROM questions WHERE title LIKE '%lunch%'),
-    NULL, 
-    (SELECT id FROM users WHERE fname = 'Victor' AND lname = 'He'), 
-    'Pizza sucks. Get halal instead.');
+        NULL, 
+        (SELECT id FROM users WHERE fname = 'Victor' AND lname = 'He'), 
+        'Pizza sucks. Get halal instead.'),
+    ((SELECT id FROM questions WHERE title LIKE '%lunch%'),
+        1, 
+        (SELECT id FROM users WHERE fname = 'Ayce' AND lname = 'Lacap'), 
+        'SF has the best pizza :)');
 
 INSERT INTO
     question_likes(user_id, question_id)
