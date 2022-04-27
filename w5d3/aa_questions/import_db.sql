@@ -73,7 +73,9 @@ INSERT INTO
     question_follows(question_id, user_id)
 VALUES
     ((SELECT id FROM questions WHERE title LIKE '%SQL%'),
-    (SELECT id FROM users WHERE fname = 'Ayce' AND lname = 'Lacap'));
+        (SELECT id FROM users WHERE fname = 'Ayce' AND lname = 'Lacap')),
+    ((SELECT id FROM questions WHERE title LIKE '%SQL%'),
+        (SELECT id FROM users WHERE fname = 'Victor' AND lname = 'He'));
 
 INSERT INTO
     replies(question_id, parent_reply_id, user_id, body)
