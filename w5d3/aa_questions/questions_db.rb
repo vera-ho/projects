@@ -55,6 +55,10 @@ class User
     def authored_replies
         Reply.find_by_user_id(self.id)
     end
+
+    def followed_questions
+        QuestionFollow.followed_questions_for_user_id(self.id)
+    end
 end
 
 class Question
@@ -110,6 +114,10 @@ class Question
         replies = Reply.find_by_question_id(self.id)
         # ASK: what do we want to return? Instances or the body of replies?
     end
+
+    def followers
+        QuestionFollow.followers_for_question_id(self.id)
+    end
 end
 
 class QuestionFollow
@@ -151,6 +159,24 @@ class QuestionFollow
     end
 
     def self.followed_questions_for_user_id(user_id)
+        questions = QuestionsDatabase.instance.execute(<<-SQL, user_id)
+            SELECT
+                questions.id
+            FROM
+                questions
+            JOIN
+                question_follows
+                ON
+                    questions.id = question_follows.question_id
+            JOIN
+                users
+                ON
+                    question_follows.user_id = users.id
+            WHERE
+                users.id = ?
+        SQL
+        questions.map { |question| Question.find_by_id(question['id']) }
+    end
 
     def initialize(options)
         @id = options['id']
