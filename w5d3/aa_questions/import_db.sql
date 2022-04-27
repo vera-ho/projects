@@ -93,4 +93,8 @@ INSERT INTO
     question_likes(user_id, question_id)
 VALUES
     ((SELECT id FROM users WHERE fname = 'Madeleine' AND lname =  'Pla'),
-    (SELECT id FROM questions WHERE title LIKE '%lunch%'));
+        (SELECT id FROM questions WHERE title LIKE '%lunch%')),
+    ((SELECT id FROM users WHERE fname = 'Ayce' AND lname =  'Lacap'),
+        (SELECT id FROM questions WHERE title LIKE '%lunch%')),
+    ((SELECT id FROM users WHERE fname = 'Vera' AND lname =  'Ho'),
+        (SELECT id FROM questions WHERE title LIKE '%SQL%'));
