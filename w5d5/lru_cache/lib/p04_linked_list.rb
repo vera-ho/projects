@@ -1,4 +1,4 @@
-
+# Given
 class Node
   attr_reader :key
   attr_accessor :val, :next, :prev
@@ -20,6 +20,7 @@ class Node
   end
 end
 
+# Complete this
 class LinkedList
   include Enumerable
   attr_reader :head, :tail
